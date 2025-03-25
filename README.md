@@ -1,6 +1,8 @@
-# notesapp
+# Notes App
 
-A new Flutter project.
+Koresy Samuel Parlinggoman Nainggolan (5025221141)
+
+Demonstration video [here](https://youtu.be/KlQua3CXZ10)
 
 ## Getting Started
 
