@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "452549916706",
+    "firebase_url": "https://notesapp-kore-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "notesapp-kore",
+    "storage_bucket": "notesapp-kore.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452549916706:android:367e29ba5223e4b60df27b",
+        "android_client_info": {
+          "package_name": "com.example.notesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAheQEFXi9irNjrAUjAzPhgjbpghB2uAI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

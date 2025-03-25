@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/model/note_model.dart';
 import 'package:notesapp/pages/add_note.dart';
+import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/pages/edit_note.dart';
 import 'package:notesapp/pages/note_card.dart';
+import 'package:notesapp/services/note_service.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -15,6 +16,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isLoading = false;
+  final _noteService = NoteService();
+  List<NoteModel> notes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchNotes();
+  }
+
+  Future<void> _fetchNotes() async {
+    setState(() {
+      _isLoading = true;
+    });
+    notes = await _noteService.readNotes();
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     _isLoading = true;
                   });
 
-                  await Future.delayed(const Duration(seconds: 1));
+                  await _noteService.deleteNote(notes[index].key);
 
                   setState(() {
                     notes.removeAt(index);
@@ -56,13 +75,17 @@ class _HomePageState extends State<HomePage> {
                       _isLoading = true;
                     });
 
-                    await Future.delayed(const Duration(seconds: 1));
+                    final updatedNote = NoteModel(
+                      key: notes[index].key,
+                      title: newNote[0],
+                      content: newNote[1],
+                      timestamp: notes[index].timestamp,
+                    );
+
+                    await _noteService.updateNote(notes[index].key, updatedNote);
 
                     setState(() {
-                      notes[index] = NoteModel(
-                        title: newNote[0],
-                        content: newNote[1],
-                      );
+                      notes[index] = updatedNote;
                       _isLoading = false;
                     });
                   }
@@ -87,13 +110,10 @@ class _HomePageState extends State<HomePage> {
               _isLoading = true;
             });
 
-            await Future.delayed(const Duration(seconds: 1));
+            await _noteService.createNote(newNote);
+            await _fetchNotes();
 
             setState(() {
-              notes.add(NoteModel(
-                title: newNote[0],
-                content: newNote[1],
-              ));
               _isLoading = false;
             });
           }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/models/note_model.dart';
 
-Future<List<String>?> showAddNoteBottomSheet(BuildContext context) {
+Future<NoteModel?> showAddNoteBottomSheet(BuildContext context) {
   final titleController = TextEditingController();
   final contentController = TextEditingController();
+  final timestampController = TextEditingController(text: DateTime.now().millisecondsSinceEpoch.toString());
 
   return showModalBottomSheet(
     context: context,
@@ -31,10 +33,15 @@ Future<List<String>?> showAddNoteBottomSheet(BuildContext context) {
               SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(ctx, [
-                    titleController.text,
-                    contentController.text,
-                  ]);
+                  Navigator.pop(
+                    ctx, 
+                    NoteModel(
+                      key: '',
+                      timestamp: int.parse(timestampController.text),
+                      title: titleController.text,
+                      content: contentController.text,
+                    ),
+                  );
                 },
                 child: Text('Add Note'),
               ),
