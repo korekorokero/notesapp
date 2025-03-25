@@ -4,12 +4,14 @@ class NoteCard extends StatelessWidget {
   final String title;
   final String content;
   final VoidCallback onDelete;
+  final VoidCallback onEdit;
 
   const NoteCard({
     super.key,
     required this.title,
     required this.content,
-    required this.onDelete
+    required this.onDelete,
+    required this.onEdit,
   });
 
   @override
@@ -50,7 +52,7 @@ class NoteCard extends StatelessWidget {
                 InkWell(
                   borderRadius: BorderRadius.circular(8.0),
                   onTap: () {
-                    print('Edit note');
+                    onEdit();
                   },
                   child: Ink(
                     decoration: BoxDecoration(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/model/note_model.dart';
 import 'package:notesapp/pages/add_note.dart';
+import 'package:notesapp/pages/edit_note.dart';
 import 'package:notesapp/pages/note_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,6 +49,24 @@ class _HomePageState extends State<HomePage> {
                     _isLoading = false;
                   });
                 },
+                onEdit: () async {
+                  final newNote = await showEditNoteBottomSheet(context, notes[index].title, notes[index].content);
+                  if (newNote != null) {
+                    setState(() {
+                      _isLoading = true;
+                    });
+
+                    await Future.delayed(const Duration(seconds: 1));
+
+                    setState(() {
+                      notes[index] = NoteModel(
+                        title: newNote[0],
+                        content: newNote[1],
+                      );
+                      _isLoading = false;
+                    });
+                  }
+                }
               );
             },
           ),
