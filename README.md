@@ -4,15 +4,6 @@ Koresy Samuel Parlinggoman Nainggolan (5025221141)
 
 Demonstration video [here](https://youtu.be/KlQua3CXZ10)
 
-## Getting Started
+## References
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+For integration with Firebase Realtime Database I watched a [tutorial video on how to do it](https://youtu.be/DnH8AuR4S2A?si=BZczA2neI8a5VFMJ), and I used GitHub Copilot to make it fit and fix any error within my app. Other than that, I referred to projects that I've made before to make the pages, classes, widgets, etc.
