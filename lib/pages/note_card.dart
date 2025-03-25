@@ -70,7 +70,31 @@ class NoteCard extends StatelessWidget {
                 SizedBox(height: 8.0),
                 InkWell(
                   borderRadius: BorderRadius.circular(8.0),
-                  onTap: onDelete,
+                  onTap: () async {
+                    final shouldDelete = await showDialog<bool>(
+                      context: context,
+                      builder: (BuildContext ctx) {
+                        return AlertDialog(
+                          title: Text('Confirm Deletion'),
+                          content: Text('Are you sure you want to delete this note?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(ctx, false),
+                              child: Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(ctx, true),
+                              child: Text('Delete'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+                    if (shouldDelete == true) {
+                      onDelete();
+                    }
+                  },
                   child: Ink(
                     decoration: BoxDecoration(
                       color: Colors.red.shade200,
